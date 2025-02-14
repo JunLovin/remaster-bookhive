@@ -17,8 +17,8 @@ function Body() {
     const handleEnter = e => {
         if (e.key === 'Enter') {
             console.log(bookInput)
+            window.open(`/${bookInput}`, '_self')
             setBookInput('')
-            window.open('/e', '_self')
         }
     }
 
