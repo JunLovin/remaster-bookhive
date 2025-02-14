@@ -285,6 +285,7 @@ header {
     bottom: 15px;
     fill: var(--semi-opaque-blue);
     opacity: .3;
+    cursor: pointer;
 }
 
 /* INFO: Search Bar */
