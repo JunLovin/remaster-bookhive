@@ -1,5 +1,5 @@
 import App from "./App";
-import Searching from '@components/Searching'
+import Searching from "@components/Searching";
 import ErrorDefault from "./error/errorDefault";
 
 const routes = [
