@@ -1,10 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import Header from '@components/Header';
 import '@styles/App.css'
 
 function ErrorDefault() {
+    const navigate = useNavigate()
 
     const handleHome = () => {
-        window.open('/', '_self')
+        navigate('/')
     }
 
     return (
