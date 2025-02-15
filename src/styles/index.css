@@ -6,6 +6,7 @@
     --semi-opaque-blue: hsla(249, 20%, 80%, 0.312);
     --normal-blue: #3F3AE6;
     --yellow: #E3E63A;
+    --yellow-two: hsl(61, 77%, 20%);
 }
 
 * {
