@@ -477,6 +477,13 @@ header {
     gap: .659rem;
     border-top: 1px solid var(--yellow-two);
     border-bottom: 1px solid var(--yellow-two);
+    width: 100%;
+    height: 100%;
+}
+
+.book-image img {
+    width: 100px;
+    height: 156px;
 }
 
 .book-info {
@@ -514,6 +521,9 @@ header {
 }
 
 @media only screen and (max-width: 520px) {
+    .book-card {
+        width: auto;
+    }
     .book-description {
         display: none;
     }
