@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
+import { useApi } from '@context/ApiProvider'
+import handleApi from '../api/apiglobal'
 import '@styles/App.css'
 
 function Body() {
     const [bookInput, setBookInput] = useState('')
+    const { setData } = useApi()
     const navigate = useNavigate()
 
     const handleBookInput = e => {
@@ -22,7 +25,7 @@ function Body() {
         const dottedArrow = document.querySelector('.arrow-container')
         if (e.key === 'Enter') {
             navigate(`/${bookInput}`)
-            setBookInput('')
+            handleApi({ search: bookInput, setData })
             deleteTextIcon.style.display = 'none'
             dottedArrow.style.display = 'block'
             if (searchedContainer) {
@@ -41,6 +44,10 @@ function Body() {
         setBookInput('')
         deleteTextIcon.style.display = 'none'
     }
+
+    // if (!data) {
+    //     return <div>Loading...</div>
+    // }
 
     return (
         <>
