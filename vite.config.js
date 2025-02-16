@@ -20,6 +20,10 @@ export default defineConfig({
       {
         find: '@public',
         replacement: path.resolve(__dirname, 'public')
+      },
+      {
+        find: '@api',
+        replacement: path.resolve(__dirname, 'src/api')
       }
     ]
   },
