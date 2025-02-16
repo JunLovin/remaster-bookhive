@@ -1,21 +1,20 @@
 import '@styles/App.css'
-import elPoderDelAhora from '@public/thePowerOfNow.jpg'
 
-function BookCard() {
+function BookCard({ thumbnail, title, author, description }) {
     return (
         <>
         <div className="book-card-container">
             <div className="book-card">
                 <div className="book-image">
-                    <img src={elPoderDelAhora} alt="El poder del ahora"/>
+                    <img src={thumbnail ? thumbnail : "Imagen no encontrada"} alt={title}/>
                 </div>
                 <div className="book-info">
                     <div className="book-title-author">
-                        <h3>El Poder del Ahora</h3>
-                        <h4>Eckhart Tolle</h4>
+                        <h3>{title && title.length > 24 ? title.substring(0, 26) + "..." : "Título no encontrado"}</h3>
+                        <h4>{author}</h4>
                     </div>
                     <div className="book-description">
-                        <p>Uno de los bestsellers más famosos de todos los tiempos, nos enseña a cómo estar presentes en el momento actual y no sobrepensar.</p>
+                        <p>{description && description.length > 80 ? description.substring(0, 80) + "..." : "Descripción no encontrada"}</p>
                     </div>
                 </div>
                 <div className="book-details-btn">
