@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { useApi } from '@context/ApiProvider'
-import handleApi from '../api/apiglobal'
+import handleApi from '@api/apiglobal'
 import '@styles/App.css'
 
 function Body() {
@@ -18,7 +18,7 @@ function Body() {
             deleteTextIcon.style.display = 'none';
         }
     }
-    
+
     const handleEnter = e => {
         const deleteTextIcon = document.getElementById('deleteTextIcon')
         const searchedContainer = document.querySelector('.searched-container')
@@ -44,10 +44,6 @@ function Body() {
         setBookInput('')
         deleteTextIcon.style.display = 'none'
     }
-
-    // if (!data) {
-    //     return <div>Loading...</div>
-    // }
 
     return (
         <>
