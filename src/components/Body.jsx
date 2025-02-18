@@ -21,16 +21,16 @@ function Body() {
 
     const handleEnter = e => {
         const deleteTextIcon = document.getElementById('deleteTextIcon')
-        const searchedContainer = document.querySelector('.searched-container')
-        const dottedArrow = document.querySelector('.arrow-container')
+        const bottomArrow = document.querySelector('.arrow-container')
+        console.log(bottomArrow)
         if (e.key === 'Enter') {
             navigate(`/${bookInput}`)
             handleApi({ search: bookInput, setData })
             deleteTextIcon.style.display = 'none'
-            dottedArrow.style.display = 'block'
-            if (searchedContainer) {
-                searchedContainer.scrollIntoView({ behavior: 'smooth' })
-            }
+            bottomArrow.style.display = 'block'
+        }
+        if (e.key === 'Enter' && bookInput.length === 0) {
+            bottomArrow.style.display = 'none'
         }
     }
 
