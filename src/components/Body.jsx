@@ -28,8 +28,8 @@ function Body() {
             navigate(`/${bookInput}`)
             handleApi({ search: bookInput, setData })
             deleteTextIcon.style.display = 'none'
-            bottomArrow.style.display = 'block'
             searchedContainer.scrollIntoView({ behavior:'smooth' })
+            bottomArrow.style.display = 'block'
         }
         if (e.key === 'Enter' && bookInput.length === 0) {
             bottomArrow.style.display = 'none'
