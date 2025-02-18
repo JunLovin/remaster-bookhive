@@ -1,6 +1,13 @@
+import { useNavigate } from 'react-router-dom'
 import '@styles/App.css'
 
-function BookCard({ thumbnail, title, author, description }) {
+function BookCard({ thumbnail, title, author, description, id}) {
+    const navigate = useNavigate()
+
+    const handleBook = id => {
+        navigate(`/bookInfo`)
+    }
+
     return (
         <>
         <div className="book-card-container">
@@ -18,7 +25,7 @@ function BookCard({ thumbnail, title, author, description }) {
                     </div>
                 </div>
                 <div className="book-details-btn">
-                    <button>Detalles</button>
+                    <button onClick={() => handleBook()}>Detalles</button>
                 </div>
             </div>
         </div>
