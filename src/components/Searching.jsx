@@ -15,12 +15,12 @@ function Searching() {
 
     return (
         <>
-        <div className="searched-container">
+        <div className="searched-container" id="searched-container">
             <div className="bubble-background second-bubble"></div>
             <h2>Resultados para <span className="searched-book-name">{book}</span></h2> 
             <div className="searched-books-container">
-                {data.map((element, id) => {
-                    return <BookCard title={element.volumeInfo.title} key={id} thumbnail={element.volumeInfo.imageLinks?.thumbnail} description={element.volumeInfo.description}/>
+                {data.map((element, index) => {
+                    return <BookCard title={element.volumeInfo.title} key={index} thumbnail={element.volumeInfo.imageLinks?.thumbnail} description={element.volumeInfo.description} id={element.id}/>
                 })}
             </div>
         </div>
