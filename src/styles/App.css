@@ -159,6 +159,7 @@ header {
 
 .header-left h1 {
     font-size: 24px;
+    cursor: pointer;
 }
 
 .header-right {
@@ -530,4 +531,225 @@ header {
     .book-details-btn button {
         display: none;
     }
+}
+
+/* INFO: Individual Book */
+
+.individualBook-container {
+    margin-top: 3rem;
+    width: 100%;
+    height: 70dvh;
+    display: flex;
+    justify-content: center;
+}
+
+.individualBook {
+    width: 1367px;
+    height: 613px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    gap: 2.5rem;
+}
+
+.individualBook .heart-container {
+    position: absolute;
+    right: 10px;
+}
+
+.individualBook .heart-container svg {
+    stroke: var(--light-blue);
+    cursor: pointer;
+}
+
+.individualBook .heart-container .fill {
+    fill: var(--light-blue);
+}
+
+.individualBook .individualBook-image-btns img {
+    width: 228px;
+    height: 345px;
+}
+
+.individualBook .individualBook-image-btns .book-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: .5rem;
+}
+
+.individualBook .individualBook-image-btns .book-buttons button {
+    width: 164px;
+    height: 53px;
+    border-radius: 8rem;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    background: hsla(242, 77%, 56%, 10%);
+}
+
+.individualBook .individualBook-text {
+    color: var(--light-blue);
+    line-height: 1.5;
+}
+
+.individualBook .individualBook-text h2 {
+    font-size: 40px;
+}
+
+.individualBook .individualBook-text h3 {
+    font-size: 28px;
+}
+
+.individualBook .individualBook-text h4 {
+    font-size: 24px;
+    margin-bottom: .5rem;
+}
+
+.individualBook-text h2, .individualBook-text h3, .individualBook-text h4, .individualBook-text p {
+    line-height: 1.5;
+}
+
+.individualBook .individualBook-text p {
+    max-width: 80ch;
+}
+
+.individualBook .book-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.individualBook .book-buttons button {
+    background: hsla(242, 77%, 56%, 10%);
+    border: 1px solid var(--yellow);
+    padding: .5rem 1rem;
+    height: 3rem;
+    width: 10rem;
+    border-radius: 5rem;
+    color: var(--yellow);
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+
+.individualBook .book-buttons button:hover {
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+}
+
+.individualBook .book-buttons button:active {
+    background-color: var(--yellow-two);
+    color: var(--light-blue);
+}
+
+/* INFO: Footer */
+
+.footer-container {
+    background: var(--dark-blue);
+    border-top: 1px solid var(--yellow);
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.footer-container .copy {
+    color: var(--semi-opaque-blue);
+}
+
+footer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.footer-section {
+    width: 250px;
+    display: flex;
+    flex-direction: column;    
+}
+
+.footer-section h3 {
+    color: var(--light-blue);
+}
+
+.footer-section ul li {
+    list-style: none;
+    margin: .5rem 0;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: var(--yellow);
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.footer-newsletter {
+    width: 550px;
+    color: var(--light-blue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.footer-newsletter-inputs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    position: relative;
+}
+
+.footer-newsletter-inputs input {
+    padding: .5rem 6rem .5rem 1rem;
+    height: 3rem;
+    width: 100%;
+    border-radius: 2rem;
+    border: 1px solid var(--yellow);
+    background-color: hsla(242, 77%, 56%, 10%);
+    color: var(--light-blue);
+    outline: none;
+    font-size: 1rem;
+}
+
+.footer-newsletter-inputs input::placeholder {
+    color: var(--light-blue);
+}
+
+.footer-newsletter-inputs button {
+    position: absolute;
+    right: 0;
+    border: none;
+    padding:.5rem 1rem;
+    height: 3rem;
+    border-radius: 2rem;
+    background-color: hsla(242, 77%, 56%, 10%);
+    color: var(--yellow);
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+
+.footer-newsletter-inputs button:hover {
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+}
+
+.footer-newsletter-inputs button:active {
+    background-color: var(--yellow-two);
+    color: var(--light-blue);
 }
