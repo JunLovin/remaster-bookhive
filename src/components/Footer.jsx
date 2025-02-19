@@ -1,6 +1,29 @@
 import '@styles/App.css'
 
 function Footer() {
+
+    const onEnter = e => {
+        if (e.key === 'Enter') {
+            checkEmail()
+        }
+    }
+
+    const checkEmail = () => {
+        const emailInput = document.getElementById('email-input')
+        const success = document.getElementById('success')
+        const error = document.getElementById('error')
+        if (emailInput.value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            success.style.display = 'block'
+        } else {
+            error.style.display = 'block'
+        }
+        if (success.style.display === 'block') {
+            error.style.display = 'none'
+        } else {
+            success.style.display = 'none'
+        }
+    }
+
     return (
         <>
         <div className="footer-container">
@@ -27,8 +50,10 @@ function Footer() {
                     <h3>Newsletter</h3>
                     <p>¡Suscríbete a nuestra newsletter para que estés al tanto de todas nuestras ofertas exlusivas!</p>
                     <div className="footer-newsletter-inputs">
-                        <input type="text" placeholder="Introduce tu correo" />
-                        <button type="submit">Suscribirse</button>
+                        <span className="checkSpans error" id="error">Error, por favor ingresa un correo electrónico verdadero.</span>
+                        <span className="checkSpans success" id="success">¡Suscrito!</span>
+                        <input type="text" placeholder="Introduce tu correo" id="email-input" onKeyDown={onEnter} />
+                        <button type="submit" onClick={checkEmail}>Suscribirse</button>
                     </div>
                 </div>
             </footer>
