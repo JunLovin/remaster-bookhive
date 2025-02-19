@@ -16,7 +16,7 @@ const routes = [
             },
             {
                 // INFO: Defino una ruta dinámica para que cambie cada vez que el usuario seleccione un libro.
-                path: '/bookInfo',
+                path: '/book/:id',
                 element: <IndividualBook/>
             }
         ]
