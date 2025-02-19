@@ -753,3 +753,18 @@ footer {
     background-color: var(--yellow-two);
     color: var(--light-blue);
 }
+
+.footer-newsletter .footer-newsletter-inputs .checkSpans {
+    display: none;
+    position: absolute;
+    bottom: -30px;
+    left: 10px;
+}
+
+.footer-newsletter-inputs .error {
+    color: #f00;
+}
+
+.footer-newsletter-inputs .success {
+    color: #0f0;
+}
