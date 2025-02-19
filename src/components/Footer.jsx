@@ -32,7 +32,7 @@ function Footer() {
                     <h3>Información</h3>
                     <ul>
                         <li><a href="https://developers.google.com/books/docs/overview" target="_blank">API</a></li>
-                        <li><a href="https://github.com/JunLovin" target="_blank">Creador</a></li>
+                        <li><a href="/faq" target="_blank">FAQ</a></li>
                         <li><a href="/">Contribuidores</a></li>
                         <li><a href="/">Agradecimientos</a></li>
                     </ul>
