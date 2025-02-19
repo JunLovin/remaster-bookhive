@@ -1,10 +1,37 @@
+import { useState, useEffect } from 'react'
 import '@styles/App.css'
 
 function IndividualBook() {
+    const [bookInfo, setBookInfo] = useState({})
+    const [isLoading, setIsLoading] = useState(true)
+    const  bookId  = localStorage.getItem('bookId')
+
+    const fetchBook = id => {
+        fetch(`https://www.googleapis.com/books/v1/volumes/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+            setBookInfo(data)
+            setIsLoading(false)
+        })
+        .then((error) => {
+            console.log(error)
+            setIsLoading(false)
+        })
+    } 
+
+    console.log(bookInfo)
+
+    useEffect(() => {
+        fetchBook(bookId)
+    }, [bookId])
 
     const handleFillHeart = () => {
         const heart = document.getElementById('heart')
         heart.classList.toggle('fill')
+    }
+
+    if (isLoading) {
+        return <div>Loading...</div>
     }
 
     return (
@@ -16,17 +43,21 @@ function IndividualBook() {
                 </div>
                 <div className="individualBook-image-btns">
                     <div className="book-image">
-                        <img src="https://books.google.com.ec/books/content?id=sQYqRCIhFAMC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE73UAwpVO4_35bNxX_IzmXJaZfCcEEMnwyGNc4XY67BRKfEOe9asXsg313T2c0uFdPAwhXX6bWBbmo1BAOjAzVNunq2c3d2KMkRKuogJCKyfR73iiv2-hNb-uSqojsz2DbW0rrMq" alt="Book"/>
+                        <img 
+                            src={bookInfo.volumeInfo?.imageLinks?.large || bookInfo.volumeInfo?.imageLinks?.thumbnail || "Imagen no disponible"} 
+                            alt={bookInfo.volumeInfo?.title || "No disponible"}
+                        />
                     </div>
-
                 </div>
                 <div className="individualBook-text">
-                    <h2>El Poder del Ahora</h2>
-                    <h3>Autor(es): Eckhart Tolle</h3>
-                    <h4>Rating: 3/5</h4>
-                    <p>El libro se basa en la superación personal del escritor (Eckhart Tolle), nos hace ver el mundo desde un punto de vista totalmente diferente el cual nos enseña que debido a la digitalización perdemos la noción del tiempo y cada vez nos hacemos más distraídos por lo cual no podemos agradecer por lo que ya tenemos y tuvimos, nos centramos tanto en nuestros pensamientos que ya ni siquiera sabemos quiénes somos.</p>
+                    <h2>{bookInfo.volumeInfo?.title || "Título no disponible"}</h2>
+                    <h3>{bookInfo.volumeInfo?.authors.join(', ')}</h3>
+                    <h4>Rating: {bookInfo.volumeInfo?.averageRating || "?"}/5</h4>
+                    <p>{bookInfo.volumeInfo?.description.substring(0, 820) + "..." || "Descripción no disponible"}</p>
                     <div className="book-buttons">
-                        <button>Preview</button>
+                        <button onClick={() => {
+                            window.open(bookInfo.volumeInfo?.previewLink, "_blank")
+                        }}>Preview</button>
                         <button>Comprar</button>
                     </div>
                 </div>
