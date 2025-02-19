@@ -4,8 +4,8 @@ import '@styles/App.css'
 function BookCard({ thumbnail, title, author, description, id}) {
     const navigate = useNavigate()
 
-    const handleBook = id => {
-        navigate(`/bookInfo`)
+    const handleBook = () => {
+        navigate(`/book/${id}`)
     }
 
     return (
@@ -25,7 +25,10 @@ function BookCard({ thumbnail, title, author, description, id}) {
                     </div>
                 </div>
                 <div className="book-details-btn">
-                    <button onClick={() => handleBook()}>Detalles</button>
+                    <button onClick={() => {
+                        handleBook()
+                        localStorage.setItem('bookId', id)
+                    }}>Detalles</button>
                 </div>
             </div>
         </div>
