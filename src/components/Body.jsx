@@ -23,7 +23,6 @@ function Body() {
         const deleteTextIcon = document.getElementById('deleteTextIcon')
         const searchedContainer = document.getElementById('searched-container')
         const bottomArrow = document.querySelector('.arrow-container')
-        console.log(bottomArrow)
         if (e.key === 'Enter') {
             navigate(`/${bookInput}`)
             handleApi({ search: bookInput, setData })
