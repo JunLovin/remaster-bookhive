@@ -13,7 +13,10 @@ function BookCard({ thumbnail, title, author, description, id}) {
         <div className="book-card-container">
             <div className="book-card">
                 <div className="book-image">
-                    <img src={thumbnail ? thumbnail : "Imagen no encontrada"} alt={title}/>
+                    <img src={thumbnail ? thumbnail : "Imagen no encontrada"} alt={title} onClick={() => {
+                        handleBook()
+                        localStorage.setItem('bookId', id)
+                    }}/>
                 </div>
                 <div className="book-info">
                     <div className="book-title-author">
