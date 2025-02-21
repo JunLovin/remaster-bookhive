@@ -1000,6 +1000,18 @@ footer {
     color: #0f0;
 }
 
+@media only screen and (max-width: 1100px) {
+    .footer-newsletter p {
+        padding: 0 1rem;
+    }
+    .footer-newsletter-inputs input {
+        width: 90%;
+    }
+    .footer-newsletter-inputs button {
+        right: 5%;
+    }
+}
+
 @media only screen and (max-width: 700px) {
     .footer-container {
         border: none;
