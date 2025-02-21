@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import '@styles/App.css'
-import { useNavigate } from 'react-router-dom'
 
 function IndividualBook() {
     const [bookInfo, setBookInfo] = useState({})
