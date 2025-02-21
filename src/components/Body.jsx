@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { useApi } from '@context/ApiProvider'
+import { useApi } from '@hooks/ApiProvider'
 import handleApi from '@api/apiglobal'
 import '@styles/App.css'
 

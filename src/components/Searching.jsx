@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useApi } from '@context/ApiProvider'
+import { useApi } from '@hooks/ApiProvider'
 import '@styles/App.css'
 import BookCard from '@components/BookCard'
 
