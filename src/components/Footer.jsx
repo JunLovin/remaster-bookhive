@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import '@styles/App.css'
 
 function Footer() {
@@ -32,7 +33,7 @@ function Footer() {
                     <h3>Información</h3>
                     <ul>
                         <li><a href="https://developers.google.com/books/docs/overview" target="_blank">API</a></li>
-                        <li><a href="/faq" target="_blank">FAQ</a></li>
+                        <li><Link to="/faq">FAQ</Link></li>
                         <li><a href="/">Contribuidores</a></li>
                         <li><a href="/">Agradecimientos</a></li>
                     </ul>
