@@ -2,6 +2,7 @@ import App from "./App";
 import Searching from "@components/Searching";
 import ErrorDefault from "./error/errorDefault";
 import IndividualBook from "@components/IndividualBook";
+import FAQ from "@components/FAQ";
 
 const routes = [
     {
@@ -21,6 +22,10 @@ const routes = [
             }
         ]
     },
+    {
+        path: '/faq',
+        element: <FAQ/>
+    }
 ]
 
 export default routes
