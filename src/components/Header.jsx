@@ -60,7 +60,7 @@ function Header() {
                     content: {
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'space-between',
+                        gap: '3rem',
                         backgroundColor: '#06021A',
                         color: '#F3F1FF',
                         position: 'fixed',
@@ -83,7 +83,9 @@ function Header() {
                     <h2 className="liked-books">Libros que te gustaron</h2>
                     <svg className="modal-exit liked-exit" onClick={handleCloseLiked} xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                 </div>
-                <div className="books-liked-container"></div>
+                <div className="books-liked-container">
+                    <h3>!Lista de libros que te gustaron muy pronto!</h3>
+                </div>
             </Modal>
         
         {/* INFO: Cart */}
@@ -122,7 +124,7 @@ function Header() {
                     <svg className="modal-exit" onClick={handleCloseCart} xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                 </div>
                 <div className="books-tobuy-container">
-
+                    <h3>¡Lista de compras muy pronto!</h3>
                 </div>
                 <div className="buy-modal-btn">
                     <button onClick={() => {
