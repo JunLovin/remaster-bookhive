@@ -1045,6 +1045,16 @@ footer {
     width: 90%;
 }
 
+.books-liked-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.books-liked-container h3 {
+    color: var(--yellow);
+}
+
 /* INFO: Cart Modal */
 
 .buy-top {
@@ -1085,6 +1095,16 @@ footer {
     border-radius: 5rem;
     cursor: pointer;
     transition: all 100ms ease-in-out;
+}
+
+.books-tobuy-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.books-tobuy-container h3 {
+    color: var(--yellow);
 }
 
 .buy-modal-btn button:hover {
