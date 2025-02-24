@@ -1204,3 +1204,57 @@ footer {
     background-color: var(--yellow-two);
     color: var(--light-blue);
 }
+
+/* INFO: Contributors */
+
+.contributors {
+    width: 100%;
+    height: 90dvh;
+}
+
+.contributors-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--light-blue);
+    gap: 2rem;
+}
+
+.contributors-title h2 {
+    font-size: 64px;
+    color: var(--yellow);
+}
+
+.contributors-description {
+    max-width: 60ch;
+    text-align: center;
+    font-size: 32px;
+    line-height: 1.5;
+    font-weight: bold;
+    margin-bottom: 3rem;
+}
+
+.contributors-list ul {
+    display: flex;
+    gap: 5rem;
+}
+
+.contributors-list ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contributors-list ul li img {
+    border-radius: 50%;
+    width: 100px;
+}
+
+.contributors-list ul li span {
+    font-weight: bold;
+    font-size: 28px;
+}
