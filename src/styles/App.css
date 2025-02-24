@@ -1125,46 +1125,47 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .faq-container {
-    background: hsla(242, 77%, 56%, 10%);
-    color: var(--light-blue);
+    background-color: rgba(255, 255, 255, .01);
+    backdrop-filter: blur(4px);
     height: 80dvh;
-    width: 75%;
+    width: 1300px;
     padding: 1rem;
-    border-radius: 2rem;
     border: 1px solid var(--yellow);
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--light-blue);
 }
 
 .faq-title h2 {
     color: var(--yellow);
-    font-size: 2.3rem;
+    font-size: 64px;
 }
 
 .faq-questions {
-    width: 90%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    overflow-y: scroll;
+    width: 100%;
 }
 
 .faq-questions .question h2 {
     line-height: 1.5;
     color: var(--yellow);
-    font-size: 1.6rem;
+    font-size: 32px;
     margin-bottom: .5rem;
 }
 
 .faq-questions .question p {
     line-height: 1.5;
     max-width: 60ch;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.question {
+    margin-bottom: 1.2rem;
 }
 
 .faq-questions .question a {
@@ -1174,4 +1175,32 @@ footer {
 
 .faq-questions .question a:hover {
     text-decoration: underline;
+}
+
+.faq-button {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    padding: 0 1rem;
+}
+
+.faq-button button {
+    width: 250px;
+    height: 3.5rem;
+    font-size: 20px;
+    border: 1px solid var(--dark-blue);
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+    border-radius: 5rem;
+    cursor: pointer;
+    transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+}
+
+.faq-button button:hover {
+    background-color: #fcff41;
+}
+
+.faq-button button:active {
+    background-color: var(--yellow-two);
+    color: var(--light-blue);
 }
