@@ -2,13 +2,20 @@ import '@styles/App.css'
 import Header from '@components/Header'
 
 function FAQ() {
+
+    const handleQuestion = () => {
+        const response = prompt('Escribe tu pregunta:')
+        alert(`¡Muchas Gracias! Tu pregunta fue: ${response}, revisaremos tu pregunta y nos pondremos en contacto contigo.`)
+    }
+    
     return (
         <>
         <Header />
         <div className="faq">
+            <div className="bubble-background api-bubble"></div>
             <div className="faq-container">
                 <div className="faq-title">
-                    <h2>FAQ (Frequently Asked Questions)</h2>
+                    <h2>FAQ</h2>
                 </div>
                 <div className="faq-questions">
                     <div className="question">
@@ -21,8 +28,11 @@ function FAQ() {
                     </div>
                     <div className="question">
                         <h2>¿Cómo puedo utilizar la API?</h2>
-                        <p>Es sencillo, en <a href="https://developers.google.com/books/docs/v1/getting_started" target="_blank">esta página</a> Google te enseña a cómo utilizar su API, es cuestión de leer la documentación y listo, no es tan complicado.</p>
+                        <p>Siguiendo la <a href="https://developers.google.com/books/docs/overview">documentación oficial</a> podrás utilizar la API de Google para cualquier página.</p>
                     </div>
+                </div>
+                <div className="faq-button">
+                    <button onClick={handleQuestion}>Haz tu pregunta</button>
                 </div>
             </div>
         </div>
