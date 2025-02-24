@@ -5,7 +5,12 @@ function FAQ() {
 
     const handleQuestion = () => {
         const response = prompt('Escribe tu pregunta:')
-        alert(`¡Muchas Gracias! Tu pregunta fue: ${response}, revisaremos tu pregunta y nos pondremos en contacto contigo.`)
+        if (!response) {
+            alert('Por favor, introduce una pregunta coherente.')
+            return
+        } else {
+            alert(`¡Muchas Gracias! Tu pregunta fue: ${response}, revisaremos tu pregunta y nos pondremos en contacto contigo.`)
+        }
     }
     
     return (
