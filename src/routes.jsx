@@ -3,6 +3,7 @@ import Searching from "@components/Searching";
 import ErrorDefault from "./error/errorDefault";
 import IndividualBook from "@components/IndividualBook";
 import FAQ from "@components/FAQ";
+import Contributors from '@components/Contributors'
 
 const routes = [
     {
@@ -25,6 +26,10 @@ const routes = [
     {
         path: '/faq',
         element: <FAQ/>
+    },
+    {
+        path: '/contributors',
+        element: <Contributors />
     }
 ]
 
