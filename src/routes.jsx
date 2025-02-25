@@ -3,6 +3,7 @@ import Searching from "@components/Searching";
 import ErrorDefault from "./error/errorDefault";
 import IndividualBook from "@components/IndividualBook";
 import FAQ from "@components/FAQ";
+import Thanks from '@components/Thanks'
 import Contributors from '@components/Contributors'
 
 const routes = [
@@ -28,8 +29,12 @@ const routes = [
         element: <FAQ/>
     },
     {
+        path: '/thanks',
+        element: <Thanks/>
+    },
+    {
         path: '/contributors',
-        element: <Contributors />
+        element: <Contributors/>
     }
 ]
 
