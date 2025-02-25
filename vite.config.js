@@ -28,6 +28,10 @@ export default defineConfig({
       {
         find: '@hooks',
         replacement: path.resolve(__dirname, 'src/hooks')
+      },
+      {
+        find: '@modals',
+        replacement: path.resolve(__dirname, 'src/modals')
       }
     ]
   },
