@@ -26,7 +26,7 @@ function Footer() {
     }
 
     return (
-        <>
+        <>Lucas
         <div className="footer-container">
             <footer className="footer">
                 <div className="footer-section">
@@ -35,7 +35,7 @@ function Footer() {
                         <li><a href="https://developers.google.com/books/docs/overview" target="_blank">API</a></li>
                         <li><Link to="/faq">FAQ</Link></li>
                         <li><a href="/contributors">Contribuidores</a></li>
-                        <li><a href="/">Agradecimientos</a></li>
+                        <li><a href="/thanks">Agradecimientos</a></li>
                     </ul>
                 </div>
                 <div className="footer-section">
