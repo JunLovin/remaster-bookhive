@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react'
 import '@styles/App.css'
 
 function IndividualBook() {
+    const [isInCart, setIsInCart] = useState(false)
+    const [booksToBuy, setBooksToBuy] = useState(() => {
+        const storedBooks = localStorage.getItem('booksToBuy')
+        return storedBooks ? JSON.parse(storedBooks) : []
+    })
     const [bookInfo, setBookInfo] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const  bookId  = localStorage.getItem('bookId')
@@ -36,6 +41,18 @@ function IndividualBook() {
         return <div>Loading...</div>
     }
 
+    const saveId = (id) => {
+        if (booksToBuy.includes(id)) {
+            setIsInCart(true)
+            setTimeout(() => setIsInCart(false), 2000)
+            return
+        }
+        const newBooksToBuy = [...booksToBuy, id]
+        setBooksToBuy(newBooksToBuy)
+        localStorage.setItem('booksToBuy', JSON.stringify(newBooksToBuy))
+        console.log("Libros en el carrito: ", newBooksToBuy)
+    }
+
     return (
         <>
         <div className="individualBook-container">
@@ -63,7 +80,7 @@ function IndividualBook() {
                         <button onClick={() => {
                             window.open(bookInfo.volumeInfo?.previewLink, "_blank")
                         }}>Preview</button>
-                        <button>Comprar</button>
+                        <button onClick={() => saveId(bookInfo.id)}>{isInCart ? 'Ya en el carrito' : 'Comprar'}</button>
                     </div>
                 </div>
             </div>
