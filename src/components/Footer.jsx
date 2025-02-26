@@ -26,7 +26,7 @@ function Footer() {
     }
 
     return (
-        <>Lucas
+        <>
         <div className="footer-container">
             <footer className="footer">
                 <div className="footer-section">
