@@ -1048,6 +1048,8 @@ footer {
 .books-liked-container {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    gap: .5rem;
     justify-content: center;
 }
 
@@ -1100,7 +1102,10 @@ footer {
 .books-tobuy-container {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem .2rem;
 }
 
 .books-tobuy-container h3 {
@@ -1257,4 +1262,137 @@ footer {
 .contributors-list ul li span {
     font-weight: bold;
     font-size: 28px;
+}
+
+/* INFO: Agradecimientos */
+
+.thanks {
+    width: 100%;
+    height: 90dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thanks-container {
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.thanks-top h2 {
+    font-size: 40px;
+    color: var(--yellow);
+    line-height: 1.5;
+}
+
+.thanks-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.thanks-bottom p {
+    max-width: 60ch;
+    text-align: center;
+    color: var(--light-blue);
+    line-height: 1.5;
+}
+
+.thanks-button {
+    display: flex;
+    justify-content: center;
+}
+
+.thanks-button button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 13rem;
+    background-color: hsla(242, 77%, 56%, 10%);
+    border: 1px solid var(--yellow);
+    border-radius: 5rem;
+    font-size: 1rem;
+    color: var(--yellow);
+    cursor: pointer;
+    transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+}
+
+.thanks-button button:hover {
+    background-color: var(--yellow);
+    color: var(--dark-blue);
+}
+
+.thanks-button button:active {
+    background-color: var(--yellow-two);
+    color: var(--light-blue);
+}
+
+/* INFO: Card Cart */
+
+.card-cart-container {
+    width: 100%;
+    height: 180px;
+    border: 1px solid var(--yellow);
+    padding: .5rem;
+    display: flex;
+    position: relative;
+}
+
+.card-cart-left {
+    width: 30%;
+}
+
+.card-cart-left img {
+    width: 100px;
+    height: 156px;
+}
+
+.card-cart-right {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: .5rem;
+}
+
+.card-cart-right h2 {   
+    font-size: 20px;
+}
+
+.delete-card {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+}
+.card-cart-increase-decrease {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--yellow);
+    width: max-content;
+    height: 2rem;
+}
+
+.card-cart-increase-decrease button {
+    border: none;
+    background: transparent;
+    color: var(--yellow);
+    height: 100%;
+    width: 1.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.card-cart-increase-decrease .card-cart-increase {
+    border-right: 1px solid var(--yellow);
+}
+
+.card-cart-increase-decrease .card-cart-decrease {
+    border-left: 1px solid var(--yellow);
 }
