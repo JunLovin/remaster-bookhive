@@ -1,13 +1,23 @@
 import Modal from 'react-modal';
+import CardCart from '@components/CardCart'
 import '@styles/App.css'
 
 Modal.setAppElement('#root')
 
 function Cart({ isOpenCart = false, handleCloseCart }) {
-    const cartBooks = localStorage.getItem('booksToBuy')
-    const booksInObject = JSON.parse(cartBooks)
+    const cartBooks = localStorage.getItem('savedBooksInfo')
+    const booksInObject = JSON.parse(cartBooks) 
 
     console.log(booksInObject)
+
+    const deleteCard = (title) => {
+        for (let i = 0; i < booksInObject.length; i++) {
+            if (booksInObject[i].title === title) {
+                booksInObject.splice(i, 1);
+                localStorage.setItem('savedBooksInfo', JSON.stringify(booksInObject))
+            }
+        }
+    }
 
     return (
         <>
@@ -17,7 +27,7 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                 style={{
                     overlay: {
                         backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                        backdropFilter: 'blur(4px)'
+                        backdropFilter: 'blur(4px)',
                     },
                     content: {
                         display: 'flex',
@@ -41,20 +51,25 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                     }
                 }}
             >
-                <div className="buy-top">
-                    <h2 className="tobuy-books">Carrito</h2>
-                    <svg className="modal-exit" onClick={handleCloseCart} xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
-                </div>
-                <div className="books-tobuy-container">
-                    {booksInObject ? booksInObject.map((element, id) => {
-                        return <h1 key={id}>Libro</h1>
-                    }) : <h3>¡Aún no hay nada!</h3>}
-                </div>
-                <div className="buy-modal-btn">
-                    <button onClick={() => {
-                    alert(`¡Felicidades, has comprado ${booksInObject.length} libro(s)!`)
-                }}>Comprar</button>
-                </div>
+                    <div className="buy-top">
+                        <h2 className="tobuy-books">Carrito</h2>
+                        <svg className="modal-exit" onClick={handleCloseCart} xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                    </div>
+                    <div className="books-tobuy-container">
+                        {booksInObject?.map((book, i) => {
+                            return <CardCart
+                                key={i}
+                                title={book.title}
+                                thumbnail={book.thumbnail}
+                                deleteCard={() => deleteCard(book.title)}
+                            />
+                        })}
+                    </div>
+                    <div className="buy-modal-btn">
+                        <button onClick={() => {
+                        alert(`¡Felicidades, has comprado ${booksInObject.length} libro(s)!`)
+                    }}>Comprar</button>
+                    </div>
             </Modal>
         </>
     )
