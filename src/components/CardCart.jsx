@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '@styles/App.css'
 
-function CardCart({ thumbnail, title, deleteCard}) {
+function CardCart({ thumbnail, title, deleteCard, id}) {
     const [counter, setCounter] = useState(1);
+    const navigate = useNavigate()
 
     const addCounter = () => {
         setCounter(prev => prev + 1)
@@ -16,6 +18,12 @@ function CardCart({ thumbnail, title, deleteCard}) {
         }
     }
 
+    const handleClick = () => {
+        localStorage.setItem('bookId', id)
+        navigate(`/book/${id}`)
+        window.location.reload()
+    }
+
     return(
         <>
             <div className="card-cart-container">
@@ -23,7 +31,7 @@ function CardCart({ thumbnail, title, deleteCard}) {
                     <img src={thumbnail && thumbnail} alt={title && title}/>
                 </div>
                 <div className="card-cart-right">
-                    <h2>{title && title.substring(0, 35) + "..." || "No encontrado"}</h2>
+                    <h2 onClick={() => handleClick()}>{title && title.substring(0, 35) + "..." || "No encontrado"}</h2>
                     <div className="card-cart-increase-decrease">
                         <button className="card-cart-increase" onClick={addCounter}>+</button>
                         <span>{counter}</span>
