@@ -10,7 +10,9 @@ function Header() {
     const navigate = useNavigate()
 
     const handleHome = () => {
+        const arrowContainer = document.querySelector('.arrow-container')
         navigate('/')
+        arrowContainer.style.display = 'none'
     }
 
     const handleOpenCart = () => {
