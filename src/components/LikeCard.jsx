@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import '@styles/App.css'
 
 function CardCart({ thumbnail, title, deleteCard, id}) {
+    const navigate = useNavigate()
 
     const handleClick = () => {
         localStorage.setItem('bookId', id)
+        navigate(`/book/${id}`)
         window.location.reload()
     }
 
