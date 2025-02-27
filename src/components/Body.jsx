@@ -20,24 +20,26 @@ function Body() {
     }
 
     const handleEnter = e => {
-        const deleteTextIcon = document.getElementById('deleteTextIcon')
-        const searchedContainer = document.getElementById('searched-container')
         const bottomArrow = document.querySelector('.arrow-container')
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && bookInput.length > 0) {
+            bottomArrow.style.display = 'block'
             navigate(`/${bookInput}`)
             handleApi({ search: bookInput, setData })
-            deleteTextIcon.style.display = 'none'
-            searchedContainer.scrollIntoView({ behavior:'smooth' })
-            bottomArrow.style.display = 'block'
-        }
-        if (e.key === 'Enter' && bookInput.length === 0) {
+        } else if (e.key === 'Enter' && bookInput.length === 0) {
             bottomArrow.style.display = 'none'
+            navigate('/')
+            return
         }
     }
 
     const buttonScroll = () => {
         const searchedContainer = document.querySelector('.searched-container')
-        searchedContainer.scrollIntoView({ behavior: 'smooth' })
+        const individualBook = document.querySelector('.individualBook-container')
+        if (searchedContainer === null) {
+            individualBook.scrollIntoView({ behavior:'smooth' })
+        } else {
+            searchedContainer.scrollIntoView({ behavior: 'smooth' })
+        }
     }
 
     const handleDeleteText = () => {
@@ -58,7 +60,7 @@ function Body() {
                 <div className="hero-bottom search-bar">
                     <svg className="search-icon" xmlns="http://www.w3.org/2000/svg"  width="48"  height="48"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
                     <svg onClick={handleDeleteText} id="deleteTextIcon" className="deleteContent-icon" xmlns="http://www.w3.org/2000/svg"  width="48"  height="48"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M10 10l4 4m0 -4l-4 4" /></svg>
-                    <input type="text" placeholder='Buscar "Harry Potter"' value={bookInput} onChange={handleBookInput} onKeyDown={handleEnter}/>
+                    <input id="search-book-input" type="text" placeholder='Buscar "Harry Potter"' value={bookInput} onChange={handleBookInput} onKeyDown={handleEnter}/>
                 </div>
             </div>
             <div className="arrow-container">
