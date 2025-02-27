@@ -261,6 +261,7 @@ header {
     background: linear-gradient(to bottom, #C0C0C0 10%, var(--light-blue));
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    display: inline-block;
 }
 
 .hero-top .latam::before {
@@ -268,9 +269,20 @@ header {
     position: absolute;
     width: 100%;
     height: 4px;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
     background-color: var(--yellow);
+}
+
+@media only screen and (max-width: 480px) {
+    .hero-top .latam {
+        display: inline-block;
+        width: auto;
+    }
+    .hero-top .latam::before {
+        width: 100%;
+        bottom: -1px;
+    }
 }
 
 .quote {
@@ -1057,16 +1069,37 @@ footer {
     color: var(--yellow);
 }
 
+@media only screen and (max-width: 480px) {
+    .liked-modal {
+        width: 100%!important;
+    }
+    .liked-top h2 {
+        font-size: 24px;
+    }
+}
+
 /* INFO: Cart Modal */
 
 .buy-top {
     height: 3rem;
     width: 100%;
     border-bottom: 1px solid var(--yellow);
+    position: relative;
 }
 
 .tobuy-books {
     font-size: 2rem;
+}
+
+.delete-all {
+    position: absolute;
+    left: 0;
+    bottom: -28px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #c0c0c04b;
+    z-index: 10;
 }
 
 .modal-exit {
@@ -1100,7 +1133,10 @@ footer {
 }
 
 .books-tobuy-container {
+    position: relative;
     width: 100%;
+    height: 760px;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1120,6 +1156,15 @@ footer {
 .buy-modal-btn button:active {
     background-color: var(--yellow-two);
     color: var(--light-blue);
+}
+
+@media only screen and (max-width: 480px) {
+    .cart-modal {
+        width: 100% !important;
+    }
+    .buy-top h2 {
+        font-size: 30px;
+    }
 }
 
 /* INFO: FAQ */
@@ -1208,6 +1253,38 @@ footer {
 .faq-button button:active {
     background-color: var(--yellow-two);
     color: var(--light-blue);
+}
+
+@media only screen and (max-width: 900px) {
+    .faq-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+    }
+    .faq-questions .question h2 {
+        font-size: 28px;
+    }
+    .faq-questions .question p {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .faq-container {
+        border: none;
+    }
+    .faq-title h2 {
+        font-size: 48px;
+    }
+    .faq-questions .question h2 {
+        font-size: 24px;
+    }
+    .faq-questions .question p {
+        font-size: 16px;
+    }
 }
 
 /* INFO: Contributors */
@@ -1342,6 +1419,7 @@ footer {
     padding: .5rem;
     display: flex;
     position: relative;
+    gap: .8rem;
 }
 
 .card-cart-left {
