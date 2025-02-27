@@ -18,6 +18,7 @@ function Liked({ isOpenLiked = false, handleCloseLiked }) {
     return (
         <>
         <Modal 
+                className="liked-modal"
                 isOpen={isOpenLiked} 
                 onRequestClose={handleCloseLiked}
                 style={{
@@ -36,7 +37,8 @@ function Liked({ isOpenLiked = false, handleCloseLiked }) {
                         right: '0',
                         top: '0',
                         bottom: '0',
-                        width: '400px',
+                        width: '90%',
+                        maxWidth: '400px',
                         height: '100%',
                         padding: '20px',
                         borderRadius: '0',
@@ -60,7 +62,6 @@ function Liked({ isOpenLiked = false, handleCloseLiked }) {
                             thumbnail={book.thumbnail}
                             deleteCard={() => deleteCard(book.title)}
                             id={book.id}
-                            url={book.url}
                             />
                         )
                     })}
