@@ -22,6 +22,7 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
     return (
         <>
         <Modal 
+                className="cart-modal"
                 isOpen={isOpenCart} 
                 onRequestClose={handleCloseCart}
                 style={{
@@ -40,7 +41,8 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                         right: '0',
                         top: '0',
                         bottom: '0',
-                        width: '400px',
+                        width: '90%',
+                        maxWidth: '400px',
                         height: '100%',
                         padding: '20px',
                         borderRadius: '0',
@@ -51,9 +53,12 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                     }
                 }}
             >
+                    <svg className="modal-exit" onClick={handleCloseCart} xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                     <div className="buy-top">
                         <h2 className="tobuy-books">Carrito</h2>
-                        <svg className="modal-exit" onClick={handleCloseCart} xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                        <span className="delete-all" onClick={() => {
+                            localStorage.clear()
+                        }}>Eliminar todos</span>
                     </div>
                     <div className="books-tobuy-container">
                         {booksInObject?.map((book, i) => {
@@ -62,6 +67,7 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                                 title={book.title}
                                 thumbnail={book.thumbnail}
                                 deleteCard={() => deleteCard(book.title)}
+                                id={book.id}
                             />
                         })}
                     </div>
