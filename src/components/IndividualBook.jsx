@@ -111,7 +111,7 @@ function IndividualBook() {
                 </div>
                 <div className="individualBook-text">
                     <h2 className="pc-title">{bookInfo.volumeInfo?.title || "Título no disponible"}</h2>
-                    <h3>{bookInfo.volumeInfo?.authors.join(', ')}</h3>
+                    <h3>{bookInfo.volumeInfo?.authors && bookInfo.volumeInfo?.authors.join(', ') || "Autores: No encontrados"}</h3>
                     <h4>Rating: {bookInfo.volumeInfo?.averageRating || "?"}/5</h4>
                     <p>{bookInfo.volumeInfo?.description && bookInfo.volumeInfo?.description.substring(0, 820) + "..." || "Descripción no disponible"}</p>
                     <div className="book-buttons">
