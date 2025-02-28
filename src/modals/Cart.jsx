@@ -57,7 +57,7 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                     <div className="buy-top">
                         <h2 className="tobuy-books">Carrito</h2>
                         <span className="delete-all" onClick={() => {
-                            localStorage.clear()
+                            localStorage.removeItem('savedBooksInfo')
                             alert("Se han eliminado todos los libros, para ver los cambios sal del carrito y vuelve a entrar.")
                         }}>Eliminar todos</span>
                     </div>
