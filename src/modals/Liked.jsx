@@ -51,6 +51,10 @@ function Liked({ isOpenLiked = false, handleCloseLiked }) {
             >
                 <div className="liked-top">
                     <h2 className="liked-books">Libros que te gustaron</h2>
+                    <span className="delete-all-liked" onClick={() => {
+                            localStorage.removeItem('likedBooks')
+                            alert("Se han eliminado todos los libros, para ver los cambios sal de 'favoritos' y vuelve a entrar.")
+                        }}>Eliminar todos</span>
                     <svg className="modal-exit liked-exit" onClick={handleCloseLiked} xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                 </div>
                 <div className="books-liked-container">
