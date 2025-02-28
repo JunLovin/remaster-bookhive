@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import '@styles/App.css'
 
 function IndividualBook() {
-    const [isInCart, setIsInCart] = useState(false)
     const [booksToBuy, setBooksToBuy] = useState(() => {
         const storedBooks = localStorage.getItem('savedBooksInfo')
         return storedBooks ? JSON.parse(storedBooks) : []
@@ -34,11 +33,29 @@ function IndividualBook() {
         fetchBook(bookId)
     }, [bookId])
 
+    useEffect(() => {
+        if (!isLoading && bookInfo.id) {
+            const isLiked = likedBooks.some(book => book.id === bookInfo.id)
+            if (isLiked) {
+                const heartpc = document.getElementById('heart')
+                const heartmobile = document.getElementById('heart-mobile')
+                if (heartpc && heartmobile) {
+                    heartpc.style.fill = '#F3F1FF'
+                    heartmobile.style.fill = '#E3E63A'
+                }
+            }
+        }
+    })
+
     const handleFillHeart = () => {
         const heartpc = document.getElementById('heart')
         const heartmobile = document.getElementById('heart-mobile')
-        heartpc.classList.toggle('fill')
-        heartmobile.classList.toggle('fill')
+        if (likedBooks.some(book => book.id === bookInfo.id)) {
+            return
+        } else {
+            heartpc.classList.toggle('fill')
+            heartmobile.classList.toggle('fill')
+        }
     }
 
     if (isLoading) {
@@ -46,20 +63,20 @@ function IndividualBook() {
     }
 
     const saveBook = (title, thumbnail, id) => {
-        if (booksToBuy.includes(title, thumbnail)) {
-            setIsInCart(true)
-            setTimeout(() => setIsInCart(false), 2000)
+        if (booksToBuy.some(book => book.id === bookInfo.id)) {
+            alert("Ya está en el carrito de compras, si deseas adquirir otro hazlo desde el carrito, por favor.")
             return
         }
         const newBooksToBuy = [...booksToBuy, {title: title, thumbnail: thumbnail, id: id}]
         setBooksToBuy(newBooksToBuy)
         localStorage.setItem('savedBooksInfo', JSON.stringify(newBooksToBuy))
+        alert(`¡Has agregado "${title}" al carrito!`)
         console.log("Libros en el carrito: ", newBooksToBuy)
     }
 
     const saveLikedBook = (title, thumbnail, id) => {
-        if (likedBooks.includes(title, thumbnail)) {
-            setTimeout(() => console.log("Ya en el carrito"), 2000)
+        if (likedBooks.some(book => book.id === bookInfo.id)) {
+            alert("Ya está en favoritos, si deseas eliminarlo por favor hazlo desde favoritos")
             return
         }
         const newLikedBooks = [...likedBooks, {title: title, thumbnail: thumbnail, id: id, url: location.pathname}]
@@ -86,7 +103,10 @@ function IndividualBook() {
                         src={bookInfo.volumeInfo?.imageLinks?.large || bookInfo.volumeInfo?.imageLinks?.thumbnail || "Imagen no disponible"} 
                         alt={bookInfo.volumeInfo?.title || "No disponible"}
                     />
-                    <svg className="heart-mobile" id="heart-mobile" onClick={handleFillHeart} xmlns="http://www.w3.org/2000/svg"  width="48"  height="48"  viewBox="0 0 24 24"  fill="none"  stroke="#E3E63A"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
+                    <svg className="heart-mobile" id="heart-mobile" onClick={() => {
+                        handleFillHeart()
+                        saveLikedBook(bookInfo.volumeInfo?.title, bookInfo.volumeInfo?.imageLinks?.thumbnail, bookInfo.id)
+                    }} xmlns="http://www.w3.org/2000/svg"  width="48"  height="48"  viewBox="0 0 24 24"  fill="none"  stroke="#E3E63A"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
                 </div>
                 </div>
                 <div className="individualBook-text">
@@ -98,7 +118,7 @@ function IndividualBook() {
                         <button onClick={() => {
                             window.open(bookInfo.volumeInfo?.previewLink, "_blank")
                         }}>Preview</button>
-                        <button onClick={() => saveBook(bookInfo.volumeInfo?.title, bookInfo.volumeInfo?.imageLinks?.thumbnail)}>{isInCart ? 'Ya en el carrito' : 'Comprar'}</button>
+                        <button onClick={() => saveBook(bookInfo.volumeInfo?.title, bookInfo.volumeInfo?.imageLinks?.thumbnail, bookInfo.id)}>Comprar</button>
                     </div>
                 </div>
             </div>
