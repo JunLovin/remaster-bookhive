@@ -58,6 +58,7 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                         <h2 className="tobuy-books">Carrito</h2>
                         <span className="delete-all" onClick={() => {
                             localStorage.clear()
+                            alert("Se han eliminado todos los libros, para ver los cambios sal del carrito y vuelve a entrar.")
                         }}>Eliminar todos</span>
                     </div>
                     <div className="books-tobuy-container">
