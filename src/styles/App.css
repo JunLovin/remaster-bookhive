@@ -1049,12 +1049,32 @@ footer {
     align-items: center;
     width: 100%;
     height: 3rem;
-    border-bottom: 1px solid var(--yellow)
+    border-bottom: 1px solid var(--yellow);
+    position: relative;
+}
+
+.delete-all-liked {
+    position: absolute;
+    left: 0;
+    bottom: -28px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #c0c0c04b;
+    z-index: 10;
 }
 
 .liked-books {
     font-size: 1.7rem;
     width: 90%;
+}
+
+.liked-exit {
+    position: absolute;
+    right: 5px !important;
+    top: 10px !important;
+    cursor: pointer;
+    z-index: 10;
 }
 
 .books-liked-container {
@@ -1162,15 +1182,22 @@ footer {
 @media only screen and (max-width: 480px) {
     .cart-modal {
         width: 100% !important;
+        position: relative;
     }
     .buy-top h2 {
         font-size: 30px;
     }
     .books-tobuy-container {
-        height: 500px;
+        height: 61  0px;
+        justify-content: start;
     }
     .delete-all {
         font-size: 1rem;
+    }
+    .buy-modal-btn {
+        position: fixed;
+        bottom: 6rem;
+        left: 0;
     }
 }
 
@@ -1448,6 +1475,7 @@ footer {
 
 .card-cart-right h2 {   
     font-size: 20px;
+    cursor: pointer;
 }
 
 .delete-card {
