@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import '@styles/App.css'
 
 function IndividualBook() {
-    const [isInCart, setIsInCart] = useState(false)
     const [booksToBuy, setBooksToBuy] = useState(() => {
         const storedBooks = localStorage.getItem('savedBooksInfo')
         return storedBooks ? JSON.parse(storedBooks) : []
@@ -34,11 +33,29 @@ function IndividualBook() {
         fetchBook(bookId)
     }, [bookId])
 
+    useEffect(() => {
+        if (!isLoading && bookInfo.id) {
+            const isLiked = likedBooks.some(book => book.id === bookInfo.id)
+            if (isLiked) {
+                const heartpc = document.getElementById('heart')
+                const heartmobile = document.getElementById('heart-mobile')
+                if (heartpc && heartmobile) {
+                    heartpc.style.fill = '#F3F1FF'
+                    heartmobile.style.fill = '#E3E63A'
+                }
+            }
+        }
+    })
+
     const handleFillHeart = () => {
         const heartpc = document.getElementById('heart')
         const heartmobile = document.getElementById('heart-mobile')
-        heartpc.classList.toggle('fill')
-        heartmobile.classList.toggle('fill')
+        if (likedBooks.some(book => book.id === bookInfo.id)) {
+            return
+        } else {
+            heartpc.classList.toggle('fill')
+            heartmobile.classList.toggle('fill')
+        }
     }
 
     if (isLoading) {
@@ -46,6 +63,10 @@ function IndividualBook() {
     }
 
     const saveBook = (title, thumbnail, id) => {
+        if (booksToBuy.some(book => book.id === bookInfo.id)) {
+            alert("Ya está en el carrito de compras, si deseas adquirir otro hazlo desde el carrito, por favor.")
+            return
+        }
         const newBooksToBuy = [...booksToBuy, {title: title, thumbnail: thumbnail, id: id}]
         setBooksToBuy(newBooksToBuy)
         localStorage.setItem('savedBooksInfo', JSON.stringify(newBooksToBuy))
@@ -54,8 +75,8 @@ function IndividualBook() {
     }
 
     const saveLikedBook = (title, thumbnail, id) => {
-        if (likedBooks.includes(title, thumbnail)) {
-            setTimeout(() => console.log("Ya en el carrito"), 2000)
+        if (likedBooks.some(book => book.id === bookInfo.id)) {
+            alert("Ya está en favoritos, si deseas eliminarlo por favor hazlo desde favoritos")
             return
         }
         const newLikedBooks = [...likedBooks, {title: title, thumbnail: thumbnail, id: id, url: location.pathname}]
@@ -97,7 +118,7 @@ function IndividualBook() {
                         <button onClick={() => {
                             window.open(bookInfo.volumeInfo?.previewLink, "_blank")
                         }}>Preview</button>
-                        <button onClick={() => saveBook(bookInfo.volumeInfo?.title, bookInfo.volumeInfo?.imageLinks?.thumbnail, bookInfo.id)}>{isInCart ? 'Ya en el carrito' : 'Comprar'}</button>
+                        <button onClick={() => saveBook(bookInfo.volumeInfo?.title, bookInfo.volumeInfo?.imageLinks?.thumbnail, bookInfo.id)}>Comprar</button>
                     </div>
                 </div>
             </div>
