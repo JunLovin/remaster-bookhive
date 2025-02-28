@@ -1107,6 +1107,7 @@ footer {
     right: 25px;
     top: 25px;
     cursor: pointer;
+    z-index: 10;
 }
 
 .buy-modal-btn {
@@ -1164,6 +1165,12 @@ footer {
     }
     .buy-top h2 {
         font-size: 30px;
+    }
+    .books-tobuy-container {
+        height: 500px;
+    }
+    .delete-all {
+        font-size: 1rem;
     }
 }
 
