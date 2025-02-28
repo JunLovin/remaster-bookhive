@@ -13,9 +13,14 @@ function Header() {
         const arrowContainer = document.querySelector('.arrow-container')
         navigate('/')
         arrowContainer.style.display = 'none'
+        setIsOpenCart(false)
+        setIsOpenLiked(false)
     }
 
     const handleOpenCart = () => {
+        if (isOpenLiked) {
+            setIsOpenLiked(false)
+        }
         setIsOpenCart(true)
     }
 
@@ -24,6 +29,9 @@ function Header() {
     }
 
     const handleOpenLiked = () => {
+        if (isOpenCart) {
+            setIsOpenCart(false)
+        }
         setIsOpenLiked(true)
     }
 
@@ -53,7 +61,7 @@ function Header() {
         <Liked isOpenLiked={isOpenLiked} handleCloseLiked={handleCloseLiked} />
         
         {/* INFO: Cart */}
-        <Cart isOpenCart={isOpenCart} handleCloseCart={handleCloseCart}/>
+        <Cart isOpenCart={isOpenCart} handleCloseCart={handleCloseCart} />
         </>
     )
 }
