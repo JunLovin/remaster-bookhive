@@ -114,10 +114,31 @@ return (
         <div className="bubble-background third-bubble"></div>
             <div className="individualBook">
                 <div className="heart-container">
-                    <svg className="heart" id="heart" onClick={() => {
-                        handleFillHeart()
-                        saveLikedBook(bookInfo.volumeInfo?.title, bookInfo.volumeInfo?.imageLinks?.thumbnail, bookInfo.id)
-                    }} xmlns="http://www.w3.org/2000/svg"  width="48"  height="48"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
+                <motion.svg 
+                        className="heart" 
+                        id="heart" 
+                        onClick={() => {
+                            handleFillHeart()
+                            saveLikedBook(bookInfo.volumeInfo?.title, bookInfo.volumeInfo?.imageLinks?.thumbnail, bookInfo.id)
+                        }} 
+                        xmlns="http://www.w3.org/2000/svg"  
+                        width="48"  
+                        height="48"  
+                        viewBox="0 0 24 24"  
+                        fill="none"  
+                        stroke="currentColor"  
+                        strokeWidth="2"  
+                        strokeLinecap="round"  
+                        strokeLinejoin="round"
+                        whileTap={{ scale: 1.3 }}
+                        animate={{ 
+                            scale: [1, 1.3, 1],
+                            transition: { duration: 0.5 }
+                        }}
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                    </motion.svg>
                 </div>
                 <div className="individualBook-image-btns">
                 <h2 className="mobile-title">{bookInfo.volumeInfo?.title || "Título no disponible"}</h2>
@@ -126,10 +147,31 @@ return (
                         src={bookInfo.volumeInfo?.imageLinks?.large || bookInfo.volumeInfo?.imageLinks?.thumbnail || "Imagen no disponible"} 
                         alt={bookInfo.volumeInfo?.title || "No disponible"}
                     />
-                    <svg className="heart-mobile" id="heart-mobile" onClick={() => {
-                        handleFillHeart()
-                        saveLikedBook(bookInfo.volumeInfo?.title, bookInfo.volumeInfo?.imageLinks?.thumbnail, bookInfo.id)
-                    }} xmlns="http://www.w3.org/2000/svg"  width="48"  height="48"  viewBox="0 0 24 24"  fill="none"  stroke="#E3E63A"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
+                                        <motion.svg 
+                        className="heart-mobile" 
+                        id="heart-mobile" 
+                        onClick={() => {
+                            handleFillHeart()
+                            saveLikedBook(bookInfo.volumeInfo?.title, bookInfo.volumeInfo?.imageLinks?.thumbnail, bookInfo.id)
+                        }} 
+                        xmlns="http://www.w3.org/2000/svg"  
+                        width="48"  
+                        height="48"  
+                        viewBox="0 0 24 24"  
+                        fill="none"  
+                        stroke="#E3E63A"  
+                        strokeWidth="2"  
+                        strokeLinecap="round"  
+                        strokeLinejoin="round"
+                        whileTap={{ scale: 1.3 }}
+                        animate={{ 
+                            scale: [1, 1.3, 1],
+                            transition: { duration: 0.5 }
+                        }}
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                    </motion.svg>
                 </div>
                 </div>
                 <div className="individualBook-text">
