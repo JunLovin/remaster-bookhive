@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import '@styles/App.css'
 
 function IndividualBook() {
@@ -85,9 +86,31 @@ function IndividualBook() {
         console.log("Libros likeados ", newLikedBooks)
     }
 
-    return (
+return (
         <>
-        <div className="individualBook-container">
+        <AnimatePresence mode='wait'>
+        <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
+            animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                y: 0,
+                transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                    duration: 0.5
+                }
+            }}
+            exit={{ 
+                opacity: 0, 
+                scale: 0.98,
+                y: -10,
+                transition: { duration: 0.3 }
+            }}
+            >
+                <div className="individualBook-container">
         <div className="bubble-background third-bubble"></div>
             <div className="individualBook">
                 <div className="heart-container">
@@ -123,6 +146,8 @@ function IndividualBook() {
                 </div>
             </div>
             </div>
+        </motion.div>
+        </AnimatePresence>
         </>
     )
 }
