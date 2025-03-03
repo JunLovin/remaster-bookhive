@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Modal from 'react-modal';
 import CardCart from '@components/CardCart'
 import '@styles/App.css'
@@ -13,12 +14,10 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
     console.log(booksInObject)
 
     const deleteCard = (title) => {
-        for (let i = 0; i < booksInObject.length; i++) {
-            if (booksInObject[i].title === title) {
-                booksInObject.splice(i, 1);
-                localStorage.setItem('savedBooksInfo', JSON.stringify(booksInObject))
-            }
-        }
+        const updatedBooks = booksInObject.filter(book => book.title !== title)
+        localStorage.setItem('savedBooksInfo', JSON.stringify(updatedBooks))
+
+        setCounter(prev => ({...prev}))
     }
 
     const addCounter = (id) => {
@@ -39,6 +38,7 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
             return total + (counter[book.id] || 1)
         }, 0)
     }
+
 
     return (
         <>
@@ -83,18 +83,31 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                         }}>Eliminar todos</span>
                     </div>
                     <div className="books-tobuy-container">
-                        {booksInObject?.map((book, i) => {
-                            return <CardCart
-                                key={i}
-                                title={book.title}
-                                thumbnail={book.thumbnail}
-                                deleteCard={() => deleteCard(book.title)}
-                                id={book.id}
-                                addCounter={() => addCounter(book.id)}
-                                minusCounter={() => minusCounter(book.id)}
-                                counter={counter[book.id] || 1}
-                            />
-                        })}
+<AnimatePresence>
+        {booksInObject?.map((book, i) => {
+            return (
+                <motion.div
+                    key={book.id || i}
+                    initial={{ opacity: 1, x: 0 }}
+                    exit={{ 
+                        opacity: 0, 
+                        x: 100,
+                        transition: { duration: 0.3, ease: "easeInOut" }
+                    }}
+                >
+                    <CardCart
+                        title={book.title}
+                        thumbnail={book.thumbnail}
+                        deleteCard={() => deleteCard(book.title)}
+                        id={book.id}
+                        addCounter={() => addCounter(book.id)}
+                        minusCounter={() => minusCounter(book.id)}
+                        counter={counter[book.id] || 1}
+                    />
+                </motion.div>
+            )
+        })}
+    </AnimatePresence>
                     </div>
                     <div className="buy-modal-btn">
                         <button onClick={() => {
