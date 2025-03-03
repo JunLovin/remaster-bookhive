@@ -1,18 +1,18 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import LikeCard from '@components/LikeCard'
 import Modal from'react-modal';
 import '@styles/App.css'
 
 function Liked({ isOpenLiked = false, handleCloseLiked }) {
+    const [, forceUpdate] = useState({})
     const likedBooks = localStorage.getItem('likedBooks')
     const likedBooksObject = JSON.parse(likedBooks)
 
     const deleteCard = (title) => {
-        for (let i = 0; i < likedBooksObject.length; i++) {
-            if (likedBooksObject[i].title === title) {
-                likedBooksObject.splice(i, 1);
-                localStorage.setItem('likedBooks', JSON.stringify(likedBooksObject))
-            }
-        }
+        const updatedBooks = likedBooksObject.filter(book => book.title !== title)
+        localStorage.setItem('likedBooks', JSON.stringify(updatedBooks))
+        forceUpdate({})
     }
 
     return (
@@ -58,17 +58,29 @@ function Liked({ isOpenLiked = false, handleCloseLiked }) {
                     <svg className="modal-exit liked-exit" onClick={handleCloseLiked} xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                 </div>
                 <div className="books-liked-container">
-                    {likedBooksObject?.map((book, id) => {
-                        return (
-                            <LikeCard
-                            key={id}
-                            title={book.title}
-                            thumbnail={book.thumbnail}
-                            deleteCard={() => deleteCard(book.title)}
-                            id={book.id}
-                            />
-                        )
-                    })}
+                    <AnimatePresence>
+                            {likedBooksObject?.map((book, id) => {
+                                return (
+                                    <motion.div
+                                        key={book.id || id}
+                                        initial={{ opacity: 1, x: 0 }}
+                                        exit={{ 
+                                            opacity: 0, 
+                                            x: 100,
+                                            transition: { duration: 0.3, ease: "easeInOut" }
+                                        }}
+                                    >
+                                        <LikeCard
+                                            key={id}
+                                            title={book.title}
+                                            thumbnail={book.thumbnail}
+                                            deleteCard={() => deleteCard(book.title)}
+                                            id={book.id}
+                                        />
+                                    </motion.div>
+                                )
+                            })}
+                        </AnimatePresence>
                 </div>
             </Modal>
         </>
