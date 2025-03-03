@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Modal from 'react-modal';
 import CardCart from '@components/CardCart'
 import '@styles/App.css'
@@ -5,6 +6,7 @@ import '@styles/App.css'
 Modal.setAppElement('#root')
 
 function Cart({ isOpenCart = false, handleCloseCart }) {
+    const [counter, setCounter] = useState({})
     const cartBooks = localStorage.getItem('savedBooksInfo')
     const booksInObject = JSON.parse(cartBooks) 
 
@@ -17,6 +19,25 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                 localStorage.setItem('savedBooksInfo', JSON.stringify(booksInObject))
             }
         }
+    }
+
+    const addCounter = (id) => {
+        setCounter(prev =>  ({
+            ...prev,
+            [id]: (prev[id] || 1) + 1
+        }))
+    }
+    const minusCounter = (id) => {
+        setCounter(prev => ({
+            ...prev,
+            [id]: Math.max((prev[id] || 1) - 1, 1)
+        }))
+    }
+
+    const getTotalBooks = () => {
+        return booksInObject?.reduce((total, book) => {
+            return total + (counter[book.id] || 1)
+        }, 0)
     }
 
     return (
@@ -69,12 +90,16 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                                 thumbnail={book.thumbnail}
                                 deleteCard={() => deleteCard(book.title)}
                                 id={book.id}
+                                addCounter={() => addCounter(book.id)}
+                                minusCounter={() => minusCounter(book.id)}
+                                counter={counter[book.id] || 1}
                             />
                         })}
                     </div>
                     <div className="buy-modal-btn">
                         <button onClick={() => {
-                        alert(`¡Felicidades, has comprado ${booksInObject.length} libro(s)!`)
+                        const totalBooks = getTotalBooks()
+                        alert(`¡Felicidades, has comprado ${totalBooks} libro(s)!`)
                     }}>Comprar</button>
                     </div>
             </Modal>
