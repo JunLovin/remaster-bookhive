@@ -58,10 +58,30 @@ function Header() {
             </div>
         </header>
         {/* INFO: Liked Books */}
-        <Liked isOpenLiked={isOpenLiked} handleCloseLiked={handleCloseLiked} />
+
+            {isOpenLiked && (
+                    <Liked isOpenLiked={isOpenLiked} 
+                    handleCloseLiked={handleCloseLiked}
+                    animationProps={{
+                        initial: { x: '100%' },
+                        animate: { x: 0 },
+                        exit: { x: '100%' },
+                        transition: { type:'spring', stiffness: 300, damping: 30}
+                    }}
+                    />
+            )}
         
         {/* INFO: Cart */}
-        <Cart isOpenCart={isOpenCart} handleCloseCart={handleCloseCart} />
+            {isOpenCart && (
+                    <Cart isOpenCart={isOpenCart} 
+                    handleCloseCart={handleCloseCart}
+                    animationProps={{
+                        initial: { x: '100%' },
+                        animate: { x: 0 },
+                        exit: { x: '100%' },
+                        transition: { type:'spring', stiffness: 300, damping: 30}
+                    }}/>
+            )}
         </>
     )
 }
