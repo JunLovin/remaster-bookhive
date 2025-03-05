@@ -6,7 +6,7 @@ import '@styles/App.css'
 
 Modal.setAppElement('#root')
 
-function Cart({ isOpenCart = false, handleCloseCart }) {
+function Cart({ isOpenCart = false, handleCloseCart, animationProps }) {
     const [counter, setCounter] = useState({})
     const cartBooks = localStorage.getItem('savedBooksInfo')
     const booksInObject = JSON.parse(cartBooks) 
@@ -42,10 +42,13 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
 
     return (
         <>
+        <AnimatePresence>
+        {isOpenCart &&
         <Modal 
                 className="cart-modal"
                 isOpen={isOpenCart} 
                 onRequestClose={handleCloseCart}
+                
                 style={{
                     overlay: {
                         backgroundColor: 'rgba(0, 0, 0, 0.3)',
@@ -73,6 +76,11 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                         overflowX: 'scroll'
                     }
                 }}
+                contentElement={(props, children) => (
+                    <motion.div {...props} {...animationProps}>
+                        {children}
+                    </motion.div>
+                )}
             >
                     <svg className="modal-exit" onClick={handleCloseCart} xmlns="http://www.w3.org/2000/svg"  width="32"  height="32"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                     <div className="buy-top">
@@ -116,6 +124,8 @@ function Cart({ isOpenCart = false, handleCloseCart }) {
                     }}>Comprar</button>
                     </div>
             </Modal>
+            }
+        </AnimatePresence>
         </>
     )
 }
